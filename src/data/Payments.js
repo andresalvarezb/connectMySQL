@@ -15,9 +15,15 @@ export class Payments {
 
   async getPaymentsForClient() {
     return await connection.query(sql`
-            SELECT customerNumber, SUM(amount) 
-            FROM payments 
-            GROUP BY customerNumber
-        `);
+        SELECT customerNumber, SUM(amount) 
+        FROM payments 
+        GROUP BY customerNumber
+    `);
+  }
+
+  async getPaymentsReceived(){
+    return await connection.query(sql`
+        SELECT 
+    `);
   }
 }
