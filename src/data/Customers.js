@@ -13,5 +13,13 @@ export class Customers {
     );
   }
 
-  
+  //Obtener el promedio del límite de crédito de todos los clientes
+  async getCustomersAndCreditLimit() {
+    return await connection.query(
+      sql`
+        SELECT AVG(creditLimit)
+        FROM customers 
+        `
+    );
+  }
 }

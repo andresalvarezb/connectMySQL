@@ -1,7 +1,5 @@
 import { connection } from "../modules/connection.js";
 
-connection;
-
 export class Orders {
   async getOrdersShipped() {
     return await connection.query(
