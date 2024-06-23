@@ -24,11 +24,29 @@ export class Payments {
     }
 
     // 4. Listar el monto total de los pagos recibidos de cada cliente
-    async getPaymentsReceived() {
+    async getPaymentsReceivedByCLient() {
         return await connection.query(sql`
       SELECT customerName, p.amount 
       FROM customers 
       INNER JOIN payments p USING (customerNumber);
+    `);
+    }
+
+    // 5. Calcular el total de pagos recibidos
+    async getPaymentsReceived() {
+        return await connection.query(sql`
+            SELECT  COUNT(*) 
+            FROM payments;
+    `);
+    }
+
+    // 7. Calcular el total de pagos recibidos por cada país:
+    async getPaymentsReceived() {
+        return await connection.query(sql`
+            SELECT country, SUM(p.amount) 
+            FROM customers 
+            INNER JOIN payments AS p USING (customerNumber)
+            GROUP BY country;
     `);
     }
 }

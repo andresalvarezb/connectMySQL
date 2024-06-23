@@ -15,6 +15,17 @@ export class OrderDetails {
         );
     }
 
+    // 7. Calcular la cantidad media de productos pedidos en las órdenes:
+    async getOrdersDetailsAVG() {
+        return await connection.query(
+            sql`
+            SELECT AVG(quantityOrdered)
+            FROM orderdetails
+            INNER JOIN orders USING (orderNumber);
+      `,
+        );
+    }
+
     // Encontrar el precio medio de compra de todos los productos:
     async getOrdersDetailsByAvgPurchases() {
         return await connection.query(
